@@ -1,15 +1,16 @@
+import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
-import Form from "../components/Form";
+import { WaterConsumption } from "../components/WaterConsumption";
 
 export default function Home() {
   return (
     <>
-      <Form />
+      <WaterConsumption />
     </>
   );
 }
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
 
   if (!session)
