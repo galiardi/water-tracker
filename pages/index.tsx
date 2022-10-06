@@ -1,22 +1,25 @@
-import Link from "next/link";
-import { MainLayout } from "../components/layouts/MainLayout";
+import { getSession } from "next-auth/react";
+import Form from "../components/Form";
 
 export default function Home() {
   return (
     <>
-      <h1 className="title">Home</h1>
-
-      <h1 className="title">
-        Go to <Link href="/about">About</Link>
-      </h1>
-
-      <p className="description">
-        Get started by editing <code className="code">pages/index.js</code>
-      </p>
+      <Form />
     </>
   );
 }
 
-Home.getLayout = function getLayout(page: JSX.Element) {
-  return <MainLayout>{page}</MainLayout>;
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  if (!session)
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  return {
+    props: {},
+  };
 };

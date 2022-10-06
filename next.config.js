@@ -14,6 +14,10 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV !== "development",
   },
+  images: {
+    domains: ["lh3.googleusercontent.com", "firebasestorage.googleapis.com"],
+  },
+  output: "standalone",
 };
 
 const withPWA = require("next-pwa")({
