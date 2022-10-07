@@ -1,18 +1,8 @@
 import { Chart } from "./Chart";
-import getMonths from "../functions/getMonths";
-import getMonthlyPayments from "../functions/getMonthlyPayments";
 
-export const Payments = ({ docs }) => {
-  const months = getMonths(docs);
-  months.shift();
-  const monthlyPayments = getMonthlyPayments(docs);
-
+export const Payments = ({ payments, months }) => {
   return (
-    <Chart
-      title="Pagos mensuales"
-      datasetsData={monthlyPayments}
-      labels={months}
-    />
+    <Chart title="Pagos mensuales" datasetsData={payments} labels={months} />
   );
 };
 

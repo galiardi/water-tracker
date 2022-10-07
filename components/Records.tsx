@@ -1,14 +1,10 @@
 import { Chart } from "./Chart";
-import getMonthlyMesurements from "../functions/getMonthlyMesurements";
-import getMonths from "../functions/getMonths";
 
-export const Records = ({ docs }) => {
-  const monthlyMesurements = getMonthlyMesurements(docs);
-  const months = getMonths(docs);
+export const Records = ({ usersRecords, months }) => {
   return (
     <Chart
       title="Lecturas mensuales"
-      datasetsData={monthlyMesurements}
+      datasetsData={usersRecords}
       labels={months}
     />
   );

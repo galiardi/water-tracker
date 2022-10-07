@@ -1,19 +1,22 @@
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
-import { Records } from "../components/Records";
-import { Consumption } from "../components/Consumption";
-import { Payments } from "../components/Payments.js";
 
-import { useGetDocs } from "../hooks/useGetDocs";
+import { Chart } from "../components/Chart";
+
+import { useGetData } from "../hooks/useGetData";
 
 export default function Home() {
-  const docs = useGetDocs();
+  const { months, usersRecords, consumo, payments } = useGetData();
 
   return (
     <>
-      <Records docs={docs} />
-      <Consumption docs={docs} />
-      <Payments docs={docs} />
+      <Chart
+        title="Lecturas mensuales"
+        datasetsData={usersRecords}
+        labels={months}
+      />
+      <Chart title="Consumo mensual" datasetsData={consumo} labels={months} />
+      <Chart title="Pagos mensuales" datasetsData={payments} labels={months} />
     </>
   );
 }
