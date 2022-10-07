@@ -12,7 +12,7 @@ export default function Form() {
     sobreconsumoValorUnitario: "",
     sobreconsumoVolumen: "",
   });
-  const lastMonth = getLastMonth();
+  const lastMonth = getLastMonth(Date.now());
 
   const handleChange = (e) => {
     const newForm = { ...form, [e.target.name]: e.target.value };

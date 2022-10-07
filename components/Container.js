@@ -50,7 +50,6 @@ export default function Container(props) {
 
         .containerChild {
           min-height: 80vh;
-          padding: 0 1rem;
         }
         .footer {
           position: fixed;

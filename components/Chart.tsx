@@ -20,8 +20,7 @@ ChartJS.register(
   Legend
 );
 
-export const Chart = ({ lecturas }) => {
-  console.log(lecturas);
+export const Chart = ({ datasetsData, labels, title }) => {
   const options = {
     responsive: true,
     plugins: {
@@ -30,44 +29,46 @@ export const Chart = ({ lecturas }) => {
       },
       title: {
         display: true,
-        text: "Consumo de agua mensual (m3)",
+        text: title,
       },
     },
   };
 
-  const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-  ];
+  // labels: array of months corresponding to consumption periods.
+  // record.date: date of measure.
 
   const data = {
     labels,
     datasets: [
       {
         label: "Andrea",
-        data: [100, 200, 300, 400, 300, 200, 100],
+        data: datasetsData.Andrea,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
       {
         label: "Pablo",
-        data: [300, 500, 200, 100, 300, 500, 200],
+        data: datasetsData.Pablo,
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
       {
         label: "Rodrigo",
-        data: [500, 200, 100, 300, 500, 200, 100],
+        data: datasetsData.Rodrigo,
         borderColor: "rgb(163, 162, 235)",
         backgroundColor: "rgba(163, 162, 235, 0.5)",
       },
     ],
   };
 
-  return <Line options={options} data={data} />;
+  return (
+    <main>
+      <Line options={options} data={data} />
+      <style jsx>{`
+        main {
+          padding: 1rem;
+        }
+      `}</style>
+    </main>
+  );
 };

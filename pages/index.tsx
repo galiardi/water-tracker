@@ -1,11 +1,19 @@
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
-import { WaterConsumption } from "../components/WaterConsumption";
+import { Records } from "../components/Records";
+import { Consumption } from "../components/Consumption";
+import { Payments } from "../components/Payments.js";
+
+import { useGetDocs } from "../hooks/useGetDocs";
 
 export default function Home() {
+  const docs = useGetDocs();
+
   return (
     <>
-      <WaterConsumption />
+      <Records docs={docs} />
+      <Consumption docs={docs} />
+      <Payments docs={docs} />
     </>
   );
 }
