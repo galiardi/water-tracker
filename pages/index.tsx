@@ -1,23 +1,11 @@
 import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
-
-import { Chart } from "../components/Chart";
-
-import { useGetData } from "../hooks/useGetData";
+import { Selector } from "../components/Selector";
 
 export default function Home() {
-  const { months, recordsMonths, usersRecords, consumo, payments } =
-    useGetData();
-
   return (
     <>
-      <Chart
-        title="Lecturas mensuales"
-        datasetsData={usersRecords}
-        labels={recordsMonths}
-      />
-      <Chart title="Consumo mensual" datasetsData={consumo} labels={months} />
-      <Chart title="Pagos mensuales" datasetsData={payments} labels={months} />
+      <Selector />
     </>
   );
 }
