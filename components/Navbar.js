@@ -65,7 +65,6 @@ const Navbar = () => {
                     width={45}
                     src="/logo.svg"
                     alt="logo"
-                    priority={true}
                     onClick={() => setMenu(false)}
                   />
                 </div>

@@ -16,7 +16,6 @@ export const useGetData = () => {
       .then((querySnapshot) => {
         const tempDocuments = [];
         querySnapshot.forEach((doc) => {
-          // doc.data() is never undefined for query doc snapshots
           const data = doc.data();
           tempDocuments.unshift(data);
         });
@@ -54,6 +53,11 @@ export const useGetData = () => {
 
   const months = data.date.map((dateInMs) => getLastMonth(dateInMs));
 
+  const recordsMonths = documents.length && [
+    getLastMonth(documents[0].date),
+    ...months,
+  ]; // includes the first document data
+
   const usersRecords = {
     Andrea: data.Andrea,
     Pablo: data.Pablo,
@@ -66,6 +70,7 @@ export const useGetData = () => {
 
   return {
     months,
+    recordsMonths,
     usersRecords,
     consumo,
     payments,

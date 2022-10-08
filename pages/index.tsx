@@ -6,14 +6,15 @@ import { Chart } from "../components/Chart";
 import { useGetData } from "../hooks/useGetData";
 
 export default function Home() {
-  const { months, usersRecords, consumo, payments } = useGetData();
+  const { months, recordsMonths, usersRecords, consumo, payments } =
+    useGetData();
 
   return (
     <>
       <Chart
         title="Lecturas mensuales"
         datasetsData={usersRecords}
-        labels={months}
+        labels={recordsMonths}
       />
       <Chart title="Consumo mensual" datasetsData={consumo} labels={months} />
       <Chart title="Pagos mensuales" datasetsData={payments} labels={months} />
