@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Chart } from "./Chart";
-import { useGetData } from "../hooks/useGetData";
+import { useData } from "../context/data";
 
 export const Selector = () => {
-  const { months, recordsMonths, usersRecords, consumo, payments } =
-    useGetData();
+  const { months, recordsMonths, usersRecords, consumo, payments } = useData();
 
   const [state, setState] = useState("Lecturas mensuales");
 
