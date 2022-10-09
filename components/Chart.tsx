@@ -62,13 +62,17 @@ export const Chart = ({ datasetsData, labels, title }) => {
   };
 
   return (
-    <main>
-      <Line options={options} data={data} />
+    <>
+      <main>
+        <Line options={options} data={data} />
+      </main>
+
       <style jsx>{`
         main {
-          padding: 1rem;
+          background-color: white;
+          border-radius: 0 0 0.25rem 0.25rem;
         }
       `}</style>
-    </main>
+    </>
   );
 };
