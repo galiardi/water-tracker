@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import firebase from "../utils/firebase/client";
-import getLastMonth from "../functions/getLastMonth";
-import getConsumo from "../functions/getConsumo";
-import getPayments from "../functions/getPayments";
+import firebase from "./firebase/client";
+import getLastMonth from "./functions/getLastMonth";
+import getConsumo from "./functions/getConsumo";
+import getPayments from "./functions/getPayments";
 
 export const useGetData = () => {
   const [documents, setDocuments] = useState([]);
-
   useEffect(() => {
     const db = firebase.firestore();
     db.collection("lecturas")
