@@ -2,12 +2,14 @@ import { GetServerSideProps } from "next";
 import { getSession } from "next-auth/react";
 import { Selector } from "../components/Selector";
 import { CurrentAccount } from "../components/CurrentAccount";
+import { Form } from "../components/Form";
 
 export default function Home() {
   return (
     <>
-      <Selector />
       <CurrentAccount />
+      <Selector />
+      {/* <Form /> */}
     </>
   );
 }

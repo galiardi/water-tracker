@@ -3,11 +3,16 @@ import { useGetData } from "./hook/useGetData";
 
 const dataContext = createContext();
 
-export const DataProvider = ({ children }) => {
+const DataProvider = ({ children }) => {
   const data = useGetData();
   return <dataContext.Provider value={data}>{children}</dataContext.Provider>;
 };
 
-export const useData = () => {
+const useData = () => {
   return useContext(dataContext);
+};
+
+module.exports = {
+  DataProvider,
+  useData,
 };

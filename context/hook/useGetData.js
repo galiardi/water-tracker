@@ -4,7 +4,7 @@ import getLastMonth from "./functions/getLastMonth";
 import getConsumo from "./functions/getConsumo";
 import getPayments from "./functions/getPayments";
 
-export const useGetData = () => {
+const useGetData = () => {
   const [documents, setDocuments] = useState([]);
   useEffect(() => {
     const db = firebase.firestore();
@@ -67,11 +67,46 @@ export const useGetData = () => {
 
   const payments = getPayments(data, consumo);
 
+  const lastIndex = months.length - 1;
+
+  const lastMonth = months[lastIndex];
+
+  const lastMonthData = {
+    name: lastMonth,
+    valorUnitarioM3: data.valorUnitarioM3[lastIndex],
+    cargoFijo: data.cargoFijo[lastIndex],
+    multa:
+      Number(data.sobreconsumoVolumen[lastIndex]) *
+      (Number(data.sobreconsumoValorUnitario[lastIndex]) -
+        Number(data.valorUnitarioM3[lastIndex])),
+  };
+
+  const lastMonthUserData = {
+    Andrea: {
+      consumo: consumo.Andrea[lastIndex],
+      pago: payments.Andrea[lastIndex],
+    },
+    Pablo: {
+      consumo: consumo.Pablo[lastIndex],
+      pago: payments.Pablo[lastIndex],
+    },
+    Rodrigo: {
+      consumo: consumo.Rodrigo[lastIndex],
+      pago: payments.Rodrigo[lastIndex],
+    },
+  };
+
   return {
     months,
     recordsMonths,
     usersRecords,
     consumo,
     payments,
+    lastMonthUserData,
+    lastMonthData,
   };
+};
+
+module.exports = {
+  useGetData,
 };

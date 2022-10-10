@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import getLastMonth from "../functions/getLastMonth";
 // import firebase from '../utils/firebase/client'
 
-export default function Form() {
+export const Form = () => {
   const [form, setForm] = useState({
     Andrea: "",
     Pablo: "",
@@ -132,4 +132,4 @@ export default function Form() {
       </style>
     </>
   );
-}
+};
