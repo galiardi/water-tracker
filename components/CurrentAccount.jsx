@@ -22,20 +22,22 @@ export const CurrentAccount = () => {
           </div>
           <div>
             <p className="label">Multa</p>
-            <p>{lastMonthData.multa}</p>
+            <p>{String(lastMonthData.multa)}</p>
           </div>
         </div>
         <div className="bottom">
-          <p></p>
-          <p className="header">consumo (m3)</p>
-          <p className="header">pago</p>
+          <div className="row">
+            <p></p>
+            <p className="header">consumo (m3)</p>
+            <p className="header">pago</p>
+          </div>
           {Object.keys(lastMonthUserData).map((key) => {
             return (
-              <>
+              <div key={key} className="row">
                 <p className="header">{key}</p>
                 <p>{lastMonthUserData[key].consumo}</p>
                 <p>{lastMonthUserData[key].pago}</p>
-              </>
+              </div>
             );
           })}
         </div>
@@ -75,16 +77,18 @@ export const CurrentAccount = () => {
           background-color: #f5f5f5;
         }
         .bottom {
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr;
-          column-gap: 1px;
-          row-gap: 1px;
           text-align: right;
         }
 
-        .bottom p {
+        .row {
+          display: flex;
+        }
+
+        .row p {
           background-color: white;
           padding: 0.25rem;
+          width: 100%;
+          margin: 1px;
         }
 
         .header {

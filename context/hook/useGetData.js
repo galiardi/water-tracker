@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import firebase from "./firebase/client";
 import getLastMonth from "./functions/getLastMonth";
 import getConsumo from "./functions/getConsumo";
 import getPayments from "./functions/getPayments";
@@ -7,22 +6,9 @@ import getPayments from "./functions/getPayments";
 const useGetData = () => {
   const [documents, setDocuments] = useState([]);
   useEffect(() => {
-    const db = firebase.firestore();
-    db.collection("lecturas")
-      .orderBy("date", "desc")
-      .limit(13)
-      .get()
-      .then((querySnapshot) => {
-        const tempDocuments = [];
-        querySnapshot.forEach((doc) => {
-          const data = doc.data();
-          tempDocuments.unshift(data);
-        });
-        setDocuments(tempDocuments);
-      })
-      .catch((error) => {
-        console.log("Error getting documents: ", error);
-      });
+    fetch("/api/registros")
+      .then((response) => response.json())
+      .then((data) => setDocuments(data));
   }, []);
 
   const data = {
