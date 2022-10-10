@@ -1,5 +1,5 @@
 <h3>App architecture:</h3>
-<img src="Water-tracker.svg" alt="drawing" width="500"/>
+<img src="water-tracker.svg" alt="drawing" width="500"/>
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
