@@ -9,7 +9,7 @@ export default function Home() {
     <>
       <CurrentAccount />
       <Selector />
-      {/* <Form /> */}
+      <Form />
     </>
   );
 }

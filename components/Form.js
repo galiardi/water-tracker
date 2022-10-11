@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import getLastMonth from "../functions/getLastMonth";
-// import firebase from '../utils/firebase/client'
+import { useData } from "../context/data";
+import firebase from "../firebase/client";
 
 export const Form = () => {
+  const { currentPeriod, dateAllowedToSubmit } = useData();
+
   const [form, setForm] = useState({
     Andrea: "",
     Pablo: "",
@@ -12,7 +14,6 @@ export const Form = () => {
     sobreconsumoValorUnitario: "",
     sobreconsumoVolumen: "",
   });
-  const lastMonth = getLastMonth(Date.now());
 
   const handleChange = (e) => {
     const newForm = { ...form, [e.target.name]: e.target.value };
@@ -41,8 +42,7 @@ export const Form = () => {
     <>
       <form>
         <div>
-          <h1>Cuenta del agua</h1>
-          <h1>{lastMonth}</h1>
+          <h1>Ingresar datos {currentPeriod.monthName}</h1>
           <h2>Lecturas:</h2>
           <p>Andrea</p>
           <input
@@ -96,9 +96,19 @@ export const Form = () => {
           />
         </div>
 
-        <button type="submit" onClick={(e) => submit(e)}>
+        <button
+          type="submit"
+          onClick={(e) => submit(e)}
+          disabled={!dateAllowedToSubmit}
+        >
           Enviar
         </button>
+        {!dateAllowedToSubmit && (
+          <p>
+            Puedes registrar este periodo desde el 1 de{" "}
+            {currentPeriod.nextMonthName}.
+          </p>
+        )}
       </form>
       <style jsx>
         {`
@@ -127,6 +137,9 @@ export const Form = () => {
             color: white;
             width: fit-content;
             border-radius: 0.6rem;
+          }
+          button:disabled {
+            background-color: rgb(220, 220, 220);
           }
         `}
       </style>

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import getLastMonth from "./functions/getLastMonth";
 import getConsumo from "./functions/getConsumo";
 import getPayments from "./functions/getPayments";
+import isItAllowedToSubmit from "./functions/isItAllowedToSubmit";
+import getCurrentPeriod from "./functions/getCurrentPeriod";
 
 const useGetData = () => {
   const [documents, setDocuments] = useState([]);
@@ -82,6 +84,9 @@ const useGetData = () => {
     },
   };
 
+  const currentPeriod = getCurrentPeriod(data.date[lastIndex]);
+  const dateAllowedToSubmit = isItAllowedToSubmit(currentPeriod);
+
   return {
     months,
     recordsMonths,
@@ -90,6 +95,8 @@ const useGetData = () => {
     payments,
     lastMonthUserData,
     lastMonthData,
+    currentPeriod,
+    dateAllowedToSubmit,
   };
 };
 
