@@ -86,9 +86,9 @@ const Navbar = () => {
                 Inicio
               </a>
             </Link>
-            <Link href="/reservatuscajas">
+            <Link href="/form">
               <a className="text-gray-700 hover:bg-gray-100 block px-3 py-2">
-                Reserva tus cajas
+                Registrar lecturas
               </a>
             </Link>
           </div>

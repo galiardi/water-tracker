@@ -1,5 +1,5 @@
 import { useContext, createContext } from "react";
-import { useGetData } from "./hook/useGetData";
+import { useGetData } from "./useGetData";
 
 const dataContext = createContext();
 

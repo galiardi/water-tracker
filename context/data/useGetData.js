@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-import getLastMonth from "./functions/getLastMonth";
-import getConsumo from "./functions/getConsumo";
-import getPayments from "./functions/getPayments";
-import isItAllowedToSubmit from "./functions/isItAllowedToSubmit";
-import getCurrentPeriod from "./functions/getCurrentPeriod";
+import {
+  getLastMonth,
+  getConsumo,
+  getPayments,
+  isItAllowedToSubmit,
+  getCurrentPeriod,
+} from "../../functions";
 
 const useGetData = () => {
   const [documents, setDocuments] = useState([]);
   useEffect(() => {
+    console.log("useEffect fetching data");
     fetch("/api/registros")
       .then((response) => response.json())
       .then((data) => setDocuments(data));
@@ -50,7 +53,6 @@ const useGetData = () => {
     Pablo: data.Pablo,
     Rodrigo: data.Rodrigo,
   };
-
   const consumo = getConsumo(usersRecords);
 
   const payments = getPayments(data, consumo);
