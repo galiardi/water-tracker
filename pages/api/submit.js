@@ -10,18 +10,24 @@ export default async function handleSubmit(req, res) {
 
   //verifica si ya se puede subir un nuevo registro
   const dateAllowedToSubmit = await apiSubmitDateConfirmation(db);
-
   if (!dateAllowedToSubmit) {
     return res
       .status(400)
       .json({ error: "Aun no es tiempo de hacer un registro" });
   }
-
+  //
   const { form } = req.body;
-  console.log(form);
-  // const response = await db
-  //   .collection("lecturas")
-  //   .add({ ...form, date: Date.now() });
+
+  // verifica si faltan campos requeridos
+  const { Andrea, Pablo, Rodrigo, cargoFijo, valorUnitarioM3 } = form;
+  const requiredFields = [Andrea, Pablo, Rodrigo, cargoFijo, valorUnitarioM3];
+  if (!requiredFields.every((field) => Boolean(field))) {
+    return res.status(400).json({ error: "Informacion incompleta." });
+  }
+  //
+  const response = await db
+    .collection("lecturas")
+    .add({ ...form, date: Date.now() });
 
   return res.status(200).json({ response });
 }

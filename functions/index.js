@@ -3,6 +3,8 @@ import getConsumo from "./getConsumo";
 import getPayments from "./getPayments";
 import getCurrentPeriod from "./getCurrentPeriod";
 import isItAllowedToSubmit from "./isItAllowedToSubmit";
+import apiSubmitDateConfirmation from "./apiSubmitDateConfirmation";
+import validateForm from "./validateForm";
 
 module.exports = {
   getLastMonth,
@@ -10,4 +12,6 @@ module.exports = {
   getPayments,
   getCurrentPeriod,
   isItAllowedToSubmit,
+  apiSubmitDateConfirmation,
+  validateForm,
 };

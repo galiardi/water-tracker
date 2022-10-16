@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import { useData } from "../context/data";
-import firebase from "../firebase/client";
+import { validateForm } from "../functions";
 
 export default function Form() {
   const { currentPeriod, dateAllowedToSubmit } = useData();
 
-  const [form, setForm] = useState({
+  const [fields, setFields] = useState({
+    Andrea: "",
+    Pablo: "",
+    Rodrigo: "",
+    cargoFijo: "",
+    valorUnitarioM3: "",
+    sobreconsumoValorUnitario: "0",
+    sobreconsumoVolumen: "0",
+  });
+
+  const [errors, setErrors] = useState({
     Andrea: "",
     Pablo: "",
     Rodrigo: "",
@@ -14,37 +24,40 @@ export default function Form() {
     sobreconsumoValorUnitario: "",
     sobreconsumoVolumen: "",
   });
+  const [disabled, setDisabled] = useState(false); // change initial state to !dateAllowedToSubmit
 
   const handleChange = (e) => {
-    const newForm = { ...form, [e.target.name]: e.target.value };
-    setForm(newForm);
+    const newFields = { ...fields, [e.target.name]: e.target.value };
+    setFields(newFields);
   };
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    fetch("./api/submit", {
+    setDisabled(true);
+    if (!validateForm(fields, errors)) {
+      setDisabled(false);
+      return;
+    }
+    const response = await fetch("./api/submit", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ form }),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-    // const db = firebase.firestore()
-    // db.collection('lecturas')
-    //   .add({ ...form, date: Date.now() })
-    //   .then(() => {
-    //     setForm({
-    //       Andrea: '',
-    //       Pablo: '',
-    //       Rodrigo: '',
-    //       cargoFijo: '',
-    //       valorUnitarioM3: '',
-    //       sobreconsumoValorUnitario: '',
-    //       sobreconsumoVolumen: '',
-    //     })
-    //   })
+      body: JSON.stringify({ fields }),
+    });
+    if (response.status === 200) {
+      setFields({
+        Andrea: "",
+        Pablo: "",
+        Rodrigo: "",
+        cargoFijo: "",
+        valorUnitarioM3: "",
+        sobreconsumoValorUnitario: "",
+        sobreconsumoVolumen: "",
+      });
+    } else {
+      setDisabled(false);
+    }
   };
 
   return (
@@ -56,21 +69,21 @@ export default function Form() {
           <p>Andrea</p>
           <input
             name="Andrea"
-            value={form.Andrea}
+            value={fields.Andrea}
             type="number"
             onChange={(e) => handleChange(e)}
           />
           <p>Pablo</p>
           <input
             name="Pablo"
-            value={form.Pablo}
+            value={fields.Pablo}
             type="number"
             onChange={(e) => handleChange(e)}
           />
           <p>Rodrigo</p>
           <input
             name="Rodrigo"
-            value={form.Rodrigo}
+            value={fields.Rodrigo}
             type="number"
             onChange={(e) => handleChange(e)}
           />
@@ -78,38 +91,34 @@ export default function Form() {
           <p>Cargo fijo</p>
           <input
             name="cargoFijo"
-            value={form.cargoFijo}
+            value={fields.cargoFijo}
             type="number"
             onChange={(e) => handleChange(e)}
           />
           <p>Valor unitario del m3</p>
           <input
             name="valorUnitarioM3"
-            value={form.valorUnitarioM3}
+            value={fields.valorUnitarioM3}
             type="number"
             onChange={(e) => handleChange(e)}
           />
           <p>Sobreconsumo (valor unitario)</p>
           <input
             name="sobreconsumoValorUnitario"
-            value={form.sobreconsumoValorUnitario}
+            value={fields.sobreconsumoValorUnitario}
             type="number"
             onChange={(e) => handleChange(e)}
           />
           <p>Sobreconsumo (m3)</p>
           <input
             name="sobreconsumoVolumen"
-            value={form.sobreconsumoVolumen}
+            value={fields.sobreconsumoVolumen}
             type="number"
             onChange={(e) => handleChange(e)}
           />
         </div>
 
-        <button
-          type="submit"
-          onClick={(e) => submit(e)}
-          // disabled={!dateAllowedToSubmit}
-        >
+        <button type="submit" onClick={(e) => submit(e)} disabled={disabled}>
           Enviar
         </button>
         {!dateAllowedToSubmit && (
