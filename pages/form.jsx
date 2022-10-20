@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useData } from "../context/data";
 import { validateForm } from "../functions";
+import Field from "../components/Field";
+import { getSession } from "next-auth/react";
+import Modal from "../components/Modal";
 
-export default function Form() {
+export default function Form({ authorized }) {
+  const [showModal, setShowModal] = useState(!authorized);
   const { currentPeriod, dateAllowedToSubmit } = useData();
-
   const [fields, setFields] = useState({
     Andrea: "",
     Pablo: "",
@@ -24,11 +27,18 @@ export default function Form() {
     sobreconsumoValorUnitario: "",
     sobreconsumoVolumen: "",
   });
-  const [disabled, setDisabled] = useState(false); // change initial state to !dateAllowedToSubmit
 
-  const handleChange = (e) => {
-    const newFields = { ...fields, [e.target.name]: e.target.value };
+  const [disabled, setDisabled] = useState(true); // change initial state to !dateAllowedToSubmit
+
+  useEffect(() => {
+    setDisabled(!validateForm(fields, errors));
+  }, [fields, errors]);
+
+  const onFieldChange = (name, value, error) => {
+    const newFields = { ...fields, [name]: value };
+    const newErrors = { ...errors, [name]: error };
     setFields(newFields);
+    setErrors(newErrors);
   };
 
   const submit = async (e) => {
@@ -45,6 +55,9 @@ export default function Form() {
       },
       body: JSON.stringify({ fields }),
     });
+    const data = await response.json();
+    console.log(data);
+
     if (response.status === 200) {
       setFields({
         Andrea: "",
@@ -67,58 +80,79 @@ export default function Form() {
           <h1>Ingresar datos {currentPeriod.monthName}</h1>
           <h2>Lecturas:</h2>
           <p>Andrea</p>
-          <input
+          <Field
             name="Andrea"
             value={fields.Andrea}
             type="number"
-            onChange={(e) => handleChange(e)}
+            onChange={onFieldChange}
+            error={errors.Andrea}
+            margin={105}
+            lectura={true}
           />
           <p>Pablo</p>
-          <input
+          <Field
             name="Pablo"
             value={fields.Pablo}
             type="number"
-            onChange={(e) => handleChange(e)}
+            onChange={onFieldChange}
+            error={errors.Pablo}
+            margin={70}
+            lectura={true}
           />
           <p>Rodrigo</p>
-          <input
+          <Field
             name="Rodrigo"
             value={fields.Rodrigo}
             type="number"
-            onChange={(e) => handleChange(e)}
+            onChange={onFieldChange}
+            error={errors.Rodrigo}
+            margin={35}
+            lectura={true}
           />
           <h2>Datos de la boleta:</h2>
           <p>Cargo fijo</p>
-          <input
+          <Field
             name="cargoFijo"
             value={fields.cargoFijo}
             type="number"
-            onChange={(e) => handleChange(e)}
+            onChange={onFieldChange}
+            error={errors.cargoFijo}
+            margin={1000}
           />
           <p>Valor unitario del m3</p>
-          <input
+          <Field
             name="valorUnitarioM3"
             value={fields.valorUnitarioM3}
             type="number"
-            onChange={(e) => handleChange(e)}
+            onChange={onFieldChange}
+            error={errors.valorUnitarioM3}
+            margin={700}
           />
           <p>Sobreconsumo (valor unitario)</p>
-          <input
+          <Field
             name="sobreconsumoValorUnitario"
             value={fields.sobreconsumoValorUnitario}
             type="number"
-            onChange={(e) => handleChange(e)}
+            onChange={onFieldChange}
+            error={errors.sobreconsumoValorUnitario}
+            margin={1000}
           />
           <p>Sobreconsumo (m3)</p>
-          <input
+          <Field
             name="sobreconsumoVolumen"
             value={fields.sobreconsumoVolumen}
             type="number"
-            onChange={(e) => handleChange(e)}
+            onChange={onFieldChange}
+            error={errors.sobreconsumoVolumen}
+            margin={100}
           />
         </div>
 
-        <button type="submit" onClick={(e) => submit(e)} disabled={disabled}>
+        <button
+          type="submit"
+          onClick={(e) => submit(e)}
+          disabled={disabled || !dateAllowedToSubmit}
+        >
           Enviar
         </button>
         {!dateAllowedToSubmit && (
@@ -128,6 +162,7 @@ export default function Form() {
           </p>
         )}
       </form>
+      {showModal && <Modal onCancel={() => setShowModal(false)} />}
       <style jsx>
         {`
           form {
@@ -169,3 +204,21 @@ export default function Form() {
     </>
   );
 }
+
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  const email = session.user.email;
+  const authorizedUsers = JSON.parse(process.env.AUTHORIZED_USERS);
+  const authorized = authorizedUsers.includes(email);
+  return {
+    props: { authorized },
+  };
+};

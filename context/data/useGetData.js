@@ -6,15 +6,20 @@ import {
   isItAllowedToSubmit,
   getCurrentPeriod,
 } from "../../functions";
+import { useSession } from "next-auth/react";
 
 const useGetData = () => {
+  const { data: session } = useSession();
+
   const [documents, setDocuments] = useState([]);
+
   useEffect(() => {
-    console.log("useEffect fetching data");
+    if (!session) return;
     fetch("/api/registros")
       .then((response) => response.json())
-      .then((data) => setDocuments(data));
-  }, []);
+      .then((data) => setDocuments(data))
+      .catch(console.log);
+  }, [session]);
 
   const data = {
     Andrea: [],
@@ -61,14 +66,16 @@ const useGetData = () => {
 
   const lastMonth = months[lastIndex];
 
+  const lastDocument = documents[documents.length - 1];
+
   const lastMonthData = {
     name: lastMonth,
-    valorUnitarioM3: data.valorUnitarioM3[lastIndex],
-    cargoFijo: data.cargoFijo[lastIndex],
+    valorUnitarioM3: lastDocument?.valorUnitarioM3,
+    cargoFijo: lastDocument?.cargoFijo,
     multa:
-      Number(data.sobreconsumoVolumen[lastIndex]) *
-      (Number(data.sobreconsumoValorUnitario[lastIndex]) -
-        Number(data.valorUnitarioM3[lastIndex])),
+      Number(lastDocument?.sobreconsumoVolumen) *
+      (Number(lastDocument?.sobreconsumoValorUnitario) -
+        Number(lastDocument?.valorUnitarioM3)),
   };
 
   const lastMonthUserData = {
@@ -95,6 +102,7 @@ const useGetData = () => {
     usersRecords,
     consumo,
     payments,
+    lastDocument,
     lastMonthUserData,
     lastMonthData,
     currentPeriod,
