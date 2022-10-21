@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import ProfileDropdown from "./ProfileDropdown";
+import { signOut, useSession } from "next-auth/react";
+import { Router, useRouter } from "next/router";
 
 const Navbar = () => {
+  const { data } = useSession();
+  const user = data?.user;
+
   const [menu, setMenu] = useState(false);
+
+  const router = useRouter();
+
+  const logout = () => {
+    signOut();
+  };
 
   return (
     <>
@@ -16,6 +26,7 @@ const Navbar = () => {
               onClick={() => setMenu(!menu)}
               className="p-1 rounded-full hover:bg-gray-100 focus:outline-none"
               aria-expanded="false"
+              disabled={!user}
             >
               <span className="sr-only">Open main menu</span>
               {/* closed */}
@@ -57,22 +68,46 @@ const Navbar = () => {
           <div className="relative w-max flex items-center justify-center rounded-full hover:bg-gray-100">
             <div className="title">Leivas</div>
 
-            <Link href="/">
-              <a>
-                <div className="h-12 w-12 flex items-center justify-center">
-                  <Image
-                    height={45}
-                    width={45}
-                    src="/logo.svg"
-                    alt="logo"
-                    onClick={() => setMenu(false)}
-                  />
-                </div>
-              </a>
-            </Link>
+            <button
+              className="h-12 w-12 flex items-center justify-center"
+              disabled={!user}
+              onClick={() => router.push("/")}
+            >
+              <Image
+                height={45}
+                width={45}
+                src="/logo.svg"
+                alt="logo"
+                onClick={() => setMenu(false)}
+              />
+            </button>
           </div>
 
-          <ProfileDropdown />
+          {user ? (
+            <Image
+              src={user.image}
+              height={32}
+              width={32}
+              alt="user image"
+              className="rounded-full"
+            />
+          ) : (
+            <svg
+              className="h-8 w-8"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1}
+                d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          )}
         </div>
 
         {/* menu */}
@@ -91,6 +126,12 @@ const Navbar = () => {
                 Registrar lecturas
               </a>
             </Link>
+            <p
+              className="text-gray-700 hover:bg-gray-100 block px-3 py-2"
+              onClick={logout}
+            >
+              Cerrar sesión
+            </p>
           </div>
         </div>
       </nav>
