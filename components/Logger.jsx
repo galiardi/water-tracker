@@ -6,7 +6,7 @@ export default function Logger() {
     <>
       <div>
         <button
-          className="flex justify-center items-center px-2 py-2 rounded-md border shadow-sm bg-white font-medium text-gray-700 hover:border-purple-300 focus:outline-none"
+          className="flex justify-center items-center px-2 py-2 rounded-md border shadow-sm bg-white font-medium text-gray-700 hover:border-gray-300 focus:outline-none"
           onClick={() => signIn("google")}
         >
           <Image
