@@ -5,9 +5,9 @@ import "firebase/compat/firestore";
 
 const firebaseConfig = {
   apiKey: process.env.apiKey,
-  authDomain: process.env.authDomain,
-  projectId: process.env.projectId,
-  storageBucket: process.env.storageBucket,
+  authDomain: "water-account-management.firebaseapp.com",
+  projectId: "water-account-management",
+  storageBucket: "water-account-management.appspot.com",
   messagingSenderId: process.env.messagingSenderId,
   appId: process.env.appId,
 };
