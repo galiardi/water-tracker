@@ -25,7 +25,7 @@ export const Chart = ({ datasetsData, labels, title }) => {
     responsive: true,
     plugins: {
       legend: {
-        position: "top" as const,
+        position: "top",
       },
       title: {
         display: true,
