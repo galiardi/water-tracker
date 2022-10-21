@@ -11,8 +11,44 @@ export default function Footer1() {
       <div className="container mx-auto p-3">
         <div className="mx-auto">
           <div className="flex flex-row justify-center">
-            {/* <a
-              href={`https://wa.me/56953295712/?text=Hola.%20Solicito%20permiso%20para%20subir%20lecturas.%20${email}.%20https://suculentas.vercel.app`}
+            <a href="" className="flex flex-col justify-center px-2">
+              <svg
+                aria-label="Instagram"
+                xmlns="http://www.w3.org/2000/svg"
+                width={24}
+                height={24}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#718096"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="feather feather-instagram"
+              >
+                <rect x={2} y={2} width={20} height={20} rx={5} ry={5} />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+              </svg>
+            </a>
+            <a href="" className="px-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height={33}
+                width={33}
+                viewBox="-204.79995 -341.33325 1774.9329 2047.9995"
+              >
+                <path
+                  d="M1365.333 682.667C1365.333 305.64 1059.693 0 682.667 0 305.64 0 0 305.64 0 682.667c0 340.738 249.641 623.16 576 674.373V880H402.667V682.667H576v-150.4c0-171.094 101.917-265.6 257.853-265.6 74.69 0 152.814 13.333 152.814 13.333v168h-86.083c-84.804 0-111.25 52.623-111.25 106.61v128.057h189.333L948.4 880H789.333v477.04c326.359-51.213 576-333.635 576-674.373"
+                  fill="#858b9b"
+                />
+                <path
+                  d="M948.4 880l30.267-197.333H789.333V554.609C789.333 500.623 815.78 448 900.584 448h86.083V280s-78.124-13.333-152.814-13.333c-155.936 0-257.853 94.506-257.853 265.6v150.4H402.667V880H576v477.04a687.805 687.805 0 00106.667 8.293c36.288 0 71.91-2.84 106.666-8.293V880H948.4"
+                  fill="#fff"
+                />
+              </svg>
+            </a>
+            <a
+              href={`https://wa.me/56953295712/?text=Hola.%20Solicito%20permiso%20para%20subir%20lecturas.%20${email}.%20https://leivas.vercel.app`}
               className="flex flex-col justify-center px-2"
             >
               <svg
@@ -46,6 +82,7 @@ export default function Footer1() {
                   opacity=".08"
                   width="682"
                   height="639"
+                  xlinkHref="FCC0802E2AF8A915.png"
                   transform="translate(270.984 291.372)"
                 />
                 <path
@@ -59,33 +96,10 @@ export default function Footer1() {
                   d="M1036.898 176.091C923.562 62.677 772.859.185 612.297.114 281.43.114 12.172 269.286 12.039 600.137 12 705.896 39.633 809.13 92.156 900.13L7 1211.067l318.203-83.438c87.672 47.812 186.383 73.008 286.836 73.047h.255.003c330.812 0 600.109-269.219 600.25-600.055.055-160.343-62.328-311.108-175.649-424.53zm-424.601 923.242h-.195c-89.539-.047-177.344-24.086-253.93-69.531l-18.227-10.805-188.828 49.508 50.414-184.039-11.875-18.867c-49.945-79.414-76.312-171.188-76.273-265.422.109-274.992 223.906-498.711 499.102-498.711 133.266.055 258.516 52 352.719 146.266 94.195 94.266 146.031 219.578 145.992 352.852-.118 274.999-223.923 498.749-498.899 498.749z"
                 />
               </svg>
-            </a> */}
+            </a>
           </div>
         </div>
       </div>
-      {/* 
-                    <div className="pb-8">
-                        <div className="mx-auto pl-6">
-                            <ul>
-                                <li className="text-gray-600 hover:text-gray-700 mb-5">
-                                    <a href="javascript:void(0)">About Us</a>
-                                </li>
-                                <li className="text-gray-600 hover:text-gray-700 mb-5">
-                                    <a href="javascript:void(0)">Guidelines and how to</a>
-                                </li>
-                                <li className="text-gray-600 hover:text-gray-700 mb-5">
-                                    <a href="javascript:void(0)">Quote from the best</a>
-                                </li>
-                                <li className="text-gray-600 hover:text-gray-700">
-                                    <a href="javascript:void(0)">How to start a blog</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="pb-2">
-                            <p className="text-gray-800 text-xs text-center">2022 ChileSuculentas. Todos los derechos reservados.</p>
-                    </div>
-                    */}
     </div>
   );
 }

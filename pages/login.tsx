@@ -1,5 +1,6 @@
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import Logger from "../components/Logger";
 
 export default function Login() {
   const { status } = useSession();
@@ -17,13 +18,14 @@ export default function Login() {
   if (status === "unauthenticated") {
     return (
       <>
-        <button
-          onClick={() => {
-            signIn("google");
-          }}
-        >
-          SignIn with google
-        </button>
+        <div>
+          <Logger />
+        </div>
+        <style jsx>{`
+          div {
+            padding-top: 10rem;
+          }
+        `}</style>
       </>
     );
   }
