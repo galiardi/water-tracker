@@ -9,7 +9,7 @@ const firebaseConfig = {
   projectId: "water-account-management",
   storageBucket: "water-account-management.appspot.com",
   messagingSenderId: "481555157313",
-  appId: "1:481555157313:web:b170a5ebcea30a193411c0",
+  appId: "1:481555157313:web:725c7f3c2af8cefc3411c0",
 };
 
 // Initialize Firebase

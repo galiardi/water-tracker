@@ -82,7 +82,6 @@ export default function Footer1() {
                   opacity=".08"
                   width="682"
                   height="639"
-                  xlinkHref="FCC0802E2AF8A915.png"
                   transform="translate(270.984 291.372)"
                 />
                 <path
