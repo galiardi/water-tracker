@@ -8,7 +8,7 @@ export default function Modal(props) {
   // const router = useRouter();
   const { data: session } = useSession();
   const email = session?.user.email;
-  console.log(session);
+
   // const [dissableOkButton, setDissableOkButton] = useState("");
 
   // const handleOk = () => {
@@ -72,13 +72,7 @@ export default function Modal(props) {
             <Link
               href={`https://wa.me/56953295712/?text=Hola.%20Solicito%20permiso%20para%20subir%20lecturas.%20${email}.%20https://suculentas.vercel.app`}
             >
-              <a
-                className={`${
-                  dissableOkButton
-                    ? "bg-gray-100 border-gray-200 text-gray-300"
-                    : "bg-gray-200 border-gray-300 text-gray-700 hover:bg-gray-300 hover:border-gray-400"
-                } mt-0 w-full inline-flex justify-center rounded-md border shadow-sm px-4 py-1 font-medium focus:outline-none`}
-              >
+              <a className="bg-gray-200 border-gray-300 text-gray-700 hover:bg-gray-300 hover:border-gray-400 mt-0 w-full inline-flex justify-center rounded-md border shadow-sm px-4 py-1 font-medium focus:outline-none">
                 ok
               </a>
             </Link>
