@@ -2,7 +2,7 @@
   "name": "Leivas App",
   "short_name": "Leivas",
   "theme_color": "#CFE5FE",
-  "background_color": "#212F3C",
+  "background_color": "#CFE5FE",
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
