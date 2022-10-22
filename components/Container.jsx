@@ -14,11 +14,11 @@ export default function Container(props) {
           name="viewport"
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
         />
-        <meta name="description" content="Description" />
-        <meta name="keywords" content="Keywords" />
+        {/* <meta name="description" content="Description" />
+        <meta name="keywords" content="Keywords" /> */}
 
         <link rel="manifest" href="/manifest.json" />
-        <link
+        {/* <link
           href="/icons/favicon-16x16.png"
           rel="icon"
           type="image/png"
@@ -31,7 +31,7 @@ export default function Container(props) {
           sizes="32x32"
         />
         <link rel="apple-touch-icon" href="/apple-icon.png"></link>
-        <meta name="theme-color" content="#317EFB" />
+        <meta name="theme-color" content="#317EFB" /> */}
       </Head>
       <div className="container">
         <Navbar />

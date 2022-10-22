@@ -6,12 +6,19 @@ export default function Footer1() {
 
   const email = data.user.email;
 
+  const handleWspClick = () => {
+    window.open(
+      `https://wa.me/56953295712/?text=https://leivas.vercel.app%20--%20${email}%20--%20Hola.%20Sugiero...`,
+      "_blank"
+    );
+  };
+
   return (
     <div className="w-full border-gray-300 border-t text-sm">
       <div className="container mx-auto p-3">
         <div className="mx-auto">
           <div className="flex flex-row justify-center">
-            <a href="" className="flex flex-col justify-center px-2">
+            <div href="" className="flex flex-col justify-center px-2">
               <svg
                 aria-label="Instagram"
                 xmlns="http://www.w3.org/2000/svg"
@@ -29,8 +36,8 @@ export default function Footer1() {
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
               </svg>
-            </a>
-            <a href="" className="px-2">
+            </div>
+            <div href="" className="px-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height={33}
@@ -46,10 +53,10 @@ export default function Footer1() {
                   fill="#fff"
                 />
               </svg>
-            </a>
-            <a
-              href={`https://wa.me/56953295712/?text=Hola.%20Solicito%20permiso%20para%20subir%20lecturas.%20${email}.%20https://leivas.vercel.app`}
+            </div>
+            <button
               className="flex flex-col justify-center px-2"
+              onClick={handleWspClick}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +102,7 @@ export default function Footer1() {
                   d="M1036.898 176.091C923.562 62.677 772.859.185 612.297.114 281.43.114 12.172 269.286 12.039 600.137 12 705.896 39.633 809.13 92.156 900.13L7 1211.067l318.203-83.438c87.672 47.812 186.383 73.008 286.836 73.047h.255.003c330.812 0 600.109-269.219 600.25-600.055.055-160.343-62.328-311.108-175.649-424.53zm-424.601 923.242h-.195c-89.539-.047-177.344-24.086-253.93-69.531l-18.227-10.805-188.828 49.508 50.414-184.039-11.875-18.867c-49.945-79.414-76.312-171.188-76.273-265.422.109-274.992 223.906-498.711 499.102-498.711 133.266.055 258.516 52 352.719 146.266 94.195 94.266 146.031 219.578 145.992 352.852-.118 274.999-223.923 498.749-498.899 498.749z"
                 />
               </svg>
-            </a>
+            </button>
           </div>
         </div>
       </div>

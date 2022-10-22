@@ -1,13 +1,14 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import Logger from "../components/Logger";
+import Loading from "../components/Loading";
 
 export default function Login() {
   const { status } = useSession();
   const router = useRouter();
 
   if (status === "loading") {
-    return <div>loading...</div>;
+    return <Loading />;
   }
 
   // if (status !== "loading" && status === "authenticated") {

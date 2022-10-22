@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import Image from "next/image";
-// import { useRouter } from "next/router";
-import Link from "next/link";
+import { useRouter } from "next/router";
+// import Link from "next/link";
 import { useSession } from "next-auth/react";
 
 export default function Modal(props) {
-  // const router = useRouter();
+  const router = useRouter();
   const { data: session } = useSession();
   const email = session?.user.email;
 
-  // const [dissableOkButton, setDissableOkButton] = useState("");
+  const [dissableOkButton, setDissableOkButton] = useState("");
 
-  // const handleOk = () => {
-  //   setDissableOkButton("true");
-
-  //   router.push(
-  //     `https://wa.me/56953295712/?text=Hola.%20Solicito%20permiso%20para%20subir%20lecturas.%20${email}.%20https://suculentas.vercel.app`
-  //   );
-  // };
+  const handleOk = () => {
+    setDissableOkButton("true");
+    props.onCancel();
+    window.open(
+      `https://wa.me/56953295712/?text=Hola.%20Solicito%20autorización%20para%20subir%20lecturas.%20${email}.%20https://leivas.vercel.app`,
+      "_blank"
+    );
+    // router.push(
+    //   `https://wa.me/56953295712/?text=Hola.%20Solicito%20autorización%20para%20subir%20lecturas.%20${email}.%20https://suculentas.vercel.app`
+    // );
+  };
 
   return (
     <div className="fixed z-20 inset-0 overflow-y-auto">
@@ -58,7 +62,7 @@ export default function Modal(props) {
             </div>
           </div>
           <div className="flex bg-gray-50 px-8 py-8">
-            {/* <button
+            <button
               className={`${
                 dissableOkButton
                   ? "bg-gray-100 border-gray-200 text-gray-300"
@@ -68,14 +72,14 @@ export default function Modal(props) {
               dissabled={dissableOkButton}
             >
               ok
-            </button> */}
-            <Link
-              href={`https://wa.me/56953295712/?text=Hola.%20Solicito%20permiso%20para%20subir%20lecturas.%20${email}.%20https://suculentas.vercel.app`}
+            </button>
+            {/* <Link
+              href={`https://wa.me/56953295712/?text=Hola.%20Solicito%20autorización%20para%20subir%20lecturas.%20${email}.%20https://leivas.vercel.app`}
             >
               <a className="bg-gray-200 border-gray-300 text-gray-700 hover:bg-gray-300 hover:border-gray-400 mt-0 w-full inline-flex justify-center rounded-md border shadow-sm px-4 py-1 font-medium focus:outline-none">
                 ok
               </a>
-            </Link>
+            </Link> */}
             <button
               className="ml-4 w-full rounded-md border shadow-sm px-4 py-1 bg-gray-200 border-gray-300 font-medium text-gray-700 hover:bg-gray-300 hover:border-gray-400 focus:outline-none"
               onClick={props.onCancel}
