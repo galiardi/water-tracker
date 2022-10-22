@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     const querySnapshot = await db
       .collection("lecturas")
       .orderBy("date", "desc")
-      .limit(13)
+      .limit(7)
       .get();
 
     querySnapshot.forEach((doc) => {

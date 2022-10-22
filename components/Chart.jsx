@@ -23,6 +23,8 @@ ChartJS.register(
 export const Chart = ({ datasetsData, labels, title }) => {
   const options = {
     responsive: true,
+    // maintainAspectRatio: false,
+    aspectRatio: 1.2,
     plugins: {
       legend: {
         position: "top",
@@ -71,6 +73,10 @@ export const Chart = ({ datasetsData, labels, title }) => {
         main {
           background-color: white;
           border-radius: 0 0 0.25rem 0.25rem;
+          padding: 0rem 1rem;
+           {
+            /* min-height: 12rem; */
+          }
         }
       `}</style>
     </>
