@@ -60,7 +60,7 @@ export const Selector = () => {
       </main>
       <style jsx>{`
         main {
-          margin: 2rem 0.5rem;
+          margin: 1.5rem 0.5rem;
           padding: 1px;
           border-radius: 0.25rem;
           background-color: rgb(210 212 216);

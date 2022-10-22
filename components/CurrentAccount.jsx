@@ -44,7 +44,7 @@ export const CurrentAccount = () => {
       </main>
       <style jsx>{`
         main {
-          margin: 2rem 0.5rem;
+          margin: 1.5rem 0.5rem;
           padding: 3px;
           border-radius: 0.25rem;
           background-color: rgb(229 231 235);
