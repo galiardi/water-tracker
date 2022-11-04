@@ -1,13 +1,10 @@
-import {
-  initializeApp,
-  applicationDefault,
-  getApps,
-  getApp,
-} from "firebase-admin/app";
+import { initializeApp, cert, getApps, getApp } from "firebase-admin/app";
 import { getFirestore } from "firebase/firestore";
 
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY);
+
 const defaultAppConfig = {
-  credential: applicationDefault(),
+  credential: cert(serviceAccount),
   databaseURL: "https://water-account-management.firebaseio.com",
 };
 
