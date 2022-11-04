@@ -20,7 +20,8 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/_app.js",
-    "components/Chart.jsx"
+    "components/Chart.jsx",
+    "firebase/admin.js"
   ],
   "exclude": ["node_modules"]
 }

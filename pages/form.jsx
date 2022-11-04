@@ -48,6 +48,7 @@ export default function Form({ authorized }) {
       setDisabled(false);
       return;
     }
+    console.log(JSON.stringify({ fields }));
     const response = await fetch("./api/submit", {
       method: "POST",
       headers: {
@@ -55,21 +56,26 @@ export default function Form({ authorized }) {
       },
       body: JSON.stringify({ fields }),
     });
-    const data = await response.json();
-    console.log(data);
+    try {
+      const data = await response.json();
+      console.log(data);
 
-    if (response.status === 200) {
-      setFields({
-        Andrea: "",
-        Pablo: "",
-        Rodrigo: "",
-        cargoFijo: "",
-        valorUnitarioM3: "",
-        sobreconsumoValorUnitario: "",
-        sobreconsumoVolumen: "",
-      });
-    } else {
+      if (response.status === 200) {
+        setFields({
+          Andrea: "",
+          Pablo: "",
+          Rodrigo: "",
+          cargoFijo: "",
+          valorUnitarioM3: "",
+          sobreconsumoValorUnitario: "",
+          sobreconsumoVolumen: "",
+        });
+      } else {
+        setDisabled(false);
+      }
+    } catch (error) {
       setDisabled(false);
+      console.log(error);
     }
   };
 
