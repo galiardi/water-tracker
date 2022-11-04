@@ -47,18 +47,21 @@ export const Chart = ({ datasetsData, labels, title }) => {
         data: datasetsData.Andrea,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
+        pointRadius: 8,
       },
       {
         label: "Pablo",
         data: datasetsData.Pablo,
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",
+        pointRadius: 8,
       },
       {
         label: "Rodrigo",
         data: datasetsData.Rodrigo,
         borderColor: "rgb(163, 162, 235)",
         backgroundColor: "rgba(163, 162, 235, 0.5)",
+        pointRadius: 8,
       },
     ],
   };
