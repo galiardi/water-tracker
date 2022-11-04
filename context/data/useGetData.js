@@ -74,8 +74,8 @@ const useGetData = () => {
     cargoFijo: lastDocument?.cargoFijo,
     multa:
       Number(lastDocument?.sobreconsumoVolumen) *
-      (Number(lastDocument?.sobreconsumoValorUnitario) -
-        Number(lastDocument?.valorUnitarioM3)),
+        (Number(lastDocument?.sobreconsumoValorUnitario) -
+          Number(lastDocument?.valorUnitarioM3)) || "",
   };
 
   const lastMonthUserData = {

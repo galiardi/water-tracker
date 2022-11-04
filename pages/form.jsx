@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import { useData } from "../context/data";
 import { validateForm } from "../functions";
 import Field from "../components/Field";
@@ -7,7 +6,6 @@ import { getSession } from "next-auth/react";
 import Modal from "../components/Modal";
 
 export default function Form({ authorized }) {
-  const router = useRouter();
   const [showModal, setShowModal] = useState(!authorized);
   const { currentPeriod, dateAllowedToSubmit } = useData();
   const [fields, setFields] = useState({
@@ -63,7 +61,7 @@ export default function Form({ authorized }) {
       console.log(data);
 
       if (response.status === 200) {
-        window.location.replace("https://leivas.app.vercel");
+        window.location.replace("https://leivas.vercel.app");
       } else {
         setDisabled(false);
       }
