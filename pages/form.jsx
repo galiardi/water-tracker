@@ -133,7 +133,7 @@ export default function Form({ authorized }) {
             type="number"
             onChange={onFieldChange}
             error={errors.sobreconsumoValorUnitario}
-            margin={1000}
+            margin={3000}
           />
           <p>Sobreconsumo (m3)</p>
           <Field
