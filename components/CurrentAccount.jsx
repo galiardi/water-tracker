@@ -22,7 +22,7 @@ export const CurrentAccount = () => {
           </div>
           <div>
             <p className="label">Multa</p>
-            <p>{String(lastMonthData.multa)}</p>
+            <p>{String(Math.round(lastMonthData.multa))}</p>
           </div>
         </div>
         <div className="bottom">

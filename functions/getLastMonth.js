@@ -1,6 +1,15 @@
 export default function getLastMonth(dateInMs) {
   const date = new Date(dateInMs);
-  const lastMonth = [
+  const currentMonthNumber = date.getMonth();
+
+  let lastMonthNumber;
+  if (currentMonthNumber === 0) {
+    lastMonthNumber = 11;
+  } else {
+    lastMonthNumber = currentMonthNumber - 1;
+  }
+
+  const lastMonthName = [
     "Enero",
     "Febrero",
     "Marzo",
@@ -13,6 +22,6 @@ export default function getLastMonth(dateInMs) {
     "Octubre",
     "Noviembre",
     "Diciembre",
-  ][date.getMonth() - 1];
-  return lastMonth;
+  ][lastMonthNumber];
+  return lastMonthName;
 }
