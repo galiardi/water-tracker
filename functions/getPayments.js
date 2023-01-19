@@ -22,16 +22,18 @@ export default function getPayments(data, consumo) {
     const pPayment = Math.ceil(
       valorUnitarioM3[i] * consumo.Pablo[i] +
         cargoFijo[i] / 3 +
-        sobreconsumoVolumen[i] *
-          (sobreconsumoValorUnitario[i] - valorUnitarioM3[i]) +
+        (sobreconsumoVolumen[i] *
+          (sobreconsumoValorUnitario[i] - valorUnitarioM3[i])) /
+          2 +
         400
     );
     pPayments.push(pPayment);
     const rPayment = Math.ceil(
       valorUnitarioM3[i] * consumo.Rodrigo[i] +
         cargoFijo[i] / 3 +
-        sobreconsumoVolumen[i] *
-          (sobreconsumoValorUnitario[i] - valorUnitarioM3[i]) +
+        (sobreconsumoVolumen[i] *
+          (sobreconsumoValorUnitario[i] - valorUnitarioM3[i])) /
+          2 +
         400
     );
     rPayments.push(rPayment);
